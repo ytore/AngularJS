@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+  <html lang="en-US">
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
+  </script>
+
+  <body>
+    <div ng-app="app" ng-controller="ctrl">
+      <p>{{ header}}</p>
+      <p>{{ time }}</p>
+      <p>Number <input type="number" ng-model="number"</p>
+      <p>A number in hexa: {{ hexa }}</p>
+    </div>
+
+    <script>
+      var app = angular.module("app",[]);
+
+      app.service('hexafy', function(){
+        this.myFunc = function(x){
+          return x.toString(16);
+        }
+      });
+
+      app.controller("ctrl", function($scope, $timeout, $interval, hexafy){
+        $scope.header = "Game Time";
+        $scope.time = new Date().toLocaleTimeString();
+        $scope.number = 255;
+        $scope.hexa = hexafy.myFunc($scope.number);
+
+        $interval(function(){
+          $scope.time = new Date().toLocaleTimeString();
+        }, 1000);
+
+        $timeout(function() {
+          $scope.header = "Do you want to play a chess?"
+        }, 2000);
+      });
+    </script>
+  </body>
+</html>

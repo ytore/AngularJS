@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+  <html lang="en-US">
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
+  </script>
+
+  <style>
+    input.ng-invalid {
+        background-color: pink;
+    }
+    input.ng-valid {
+        background-color: lightgreen;
+    }
+    form.ng-valid {
+        background-color: lightblue;
+    }
+    form.ng-submitted {
+        background-color: pink;
+    }
+  </style>
+
+
+  <body>
+    <div ng-app="app" ng-controller="ctrl">
+
+      <form name="myForm">
+        <input name="myInput" ng-model="myInput" type="email" required>
+      </form>
+
+      <span ng-show="myForm.myInput.$invalid && myForm.myInput.$touched">
+        email is requried
+      </span>
+
+      <p>The input's valid state is:</p>
+      <h1>{{myForm.myInput.$valid}}</h1>
+
+      <form novalidate>
+        First Name:<br>
+        <input type="text" ng-model="user.firstName"><br>
+        Last Name:<br>
+        <input type="text" ng-model="user.lastName">
+        <br><br>
+        <button ng-click="reset()">RESET</button>
+      </form>
+      <p>form = {{user}}</p>
+      <p>master = {{master}}</p>
+    </div>
+
+    <script>
+      var app = angular.module('app',[]);
+      app.controller('ctrl', function($scope){
+        $scope.master = {firstName: "John", lastName: "Doe"};
+        $scope.reset = function(){
+          $scope.user = angular.copy($scope.master);
+        };
+        $scope.reset();
+      });
+
+    </script>
+  </body>
+</html>

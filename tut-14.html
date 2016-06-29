@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+  <html lang="en-US">
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
+  </script>
+
+  <style>
+    table, th, td {
+      border: 1px solid red;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+
+    table tr:nth-child(odd){
+      background-color: magenta;
+    }
+  </style>
+
+  <body>
+    <div ng-app="app" ng-controller="ctrl">
+      <table>
+        <tr>
+          <th> Index </th>
+          <th> Name </th>
+          <th> Country </th>
+        </tr>
+        <tr ng-repeat="x in names | orderBy : 'Country'">
+          <td ng-if='$odd' style="background-color: orange"> {{ $index + 1 }} </td>
+          <td ng-if='$even' > {{ $index + 1 }} </td>
+          <td ng-if='$odd' style="background-color: orange"> {{ x.Name }} </td>
+          <td ng-if='$even'> {{ x.Name }} </td>
+          <td ng-if='$odd' style="background-color: orange"> {{ x.Country | uppercase }} </td>
+          <td ng-if='$even'> {{ x.Country | uppercase }} </td>
+        </tr>
+      </table>
+
+      <select ng-model="sNames" ng-options="x for x in sname"></select>
+    </div>
+
+    <script>
+      var app = angular.module("app",[]);
+      app.controller("ctrl", function($scope, $http){
+        $scope.sname = ["Hello!", "timothy"];
+        $http.get("http://www.w3schools.com/angular/customers.php").then(function(response){
+            $scope.names = response.data.records;
+          });
+      });
+
+    </script>
+  </body>
+</html>

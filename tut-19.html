@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+  <html lang="en-US">
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
+  </script>
+
+  <style>
+    input.ng-invalid {
+        background-color: pink;
+    }
+    input.ng-valid {
+        background-color: lightgreen;
+    }
+    form.ng-valid {
+        background-color: lightblue;
+    }
+    form.ng-submitted {
+        background-color: pink;
+    }
+  </style>
+
+
+  <body>
+    <div ng-app="app">
+      <form name="myForm">
+        <input name="myInput" ng-model="myInput" type="email" required my-dir>
+      </form>
+
+      <p>The input's valid state is:</p>
+      <h1>{{myForm.myInput.$valid}}</h1>
+    </div>
+
+    <script>
+      var app = angular.module('app',[]);
+
+      app.directive('myDir', function(){
+          return {
+            require: 'ngModel',
+            link: function(scope, element, attr, mCtrl){
+              function myValidation(value){
+                if(value.indexOf("e") > -1) {
+                  mCtrl.$setValidity('charE', true);
+                } else{
+                  mCtrl.$setValidity('charE', false);
+              }
+              return value;
+            }
+            mCtrl.$parsers.push(myValidation);
+          }
+        };
+      });
+
+    </script>
+  </body>
+</html>

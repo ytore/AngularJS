@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+  <html lang="en-US">
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
+  </script>
+
+  <body>
+    <div ng-app="app" ng-controller="ctrl">
+      <h1 ng-click="changeText()">{{ fName }}</h1>
+    </div>
+
+    <script>
+      var app = angular.module('app', []);
+      app.controller('ctrl', function($scope){
+          $scope.fName = "Rus";
+          $scope.changeText = function(){
+              $scope.fName = "Ruslan"
+          };
+      });
+    </script>
+  </body>
+</html>

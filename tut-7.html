@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+  <html lang="en-US">
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
+  </script>
+
+  <body>
+
+    <div ng-app="app2" ng-controller="ctrl2">
+      <ul>
+        <li ng-repeat="x in names | orderBy: 'country' | filter : 'i'">
+          {{ x.name + ', ' + x.country }}
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      var app2 = angular.module('app2', []).controller('ctrl2', function($scope){
+        $scope.names = [
+          {name:'Jani',country:'Norway'},
+          {name:'Hege',country:'Sweden'},
+          {name:'Kai',country:'Denmark'}
+        ];
+      });
+    </script>
+  </body>
+</html>

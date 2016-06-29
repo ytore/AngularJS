@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+  <html lang="en-US">
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
+  </script>
+
+  <style>
+    input.ng-invalid{
+      background-color: lightblue;
+    }
+  </style>
+  <body>
+    <form ng-app="" name="form">
+      Email:
+      <input type="email" name="address" ng-model="text" required>
+      <span ng-show="form.address.$error.email">Not a valid email!</span>
+      <h1>Status</h1>
+      {{ form.address.$valid }}
+      {{ form.address.$dirty}}
+      {{ form.address.$touched}}
+    </form>
+  </body>
+</html>

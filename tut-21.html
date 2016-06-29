@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+  <html lang="en-US">
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
+  </script>
+
+  <body ng-app="app" ng-controller="ctrl">
+    <h4>X = {{ x }} </h4>
+    <h4>X in lowercase = {{ y }} </h4>
+    <h4>X in uppercase = {{ z }} </h4>
+    <h4>X isString? = {{ a }} </h4>
+    <h4>X isNumber? = {{ b }} </h4>
+
+    <script>
+      var app = angular.module("app",[]);
+      app.controller("ctrl", function($scope){
+        $scope.x = "John";
+        $scope.y = angular.lowercase($scope.x);
+        $scope.z = angular.uppercase($scope.x);
+        $scope.a = angular.isString($scope.x);
+        $scope.b = angular.isNumber($scope.x);
+      });
+    </script>
+  </body>
+</html>

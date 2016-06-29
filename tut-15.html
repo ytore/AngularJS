@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+  <html lang="en-US">
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
+  </script>
+
+  <body>
+    <div ng-app="app" ng-controller="ctrl">
+      <select ng-model="selectedName" ng-options="x for (x,y) in names">
+      </select>
+
+      <h4>Your selected car is = {{ selectedName }} </h4>
+
+      <select ng-model="selected" ng-options="y.brand for (x,y) in cars">
+      </select>
+
+      <h4>Your selected car is = {{ selected }} </h4>
+    </div>
+
+    <script>
+      var app = angular.module("app",[]);
+      app.controller("ctrl", function($scope){
+        $scope.names = {
+          car0: "Lada",
+          car1: "Zil",
+          car2: "Niva"
+        };
+
+        $scope.cars = {
+          car01 : {brand : "Ford", model : "Mustang", color : "red"},
+          car02 : {brand : "Fiat", model : "500", color : "white"},
+          car03 : {brand : "Volvo", model : "XC90", color : "black"}
+        };
+      });
+
+    </script>
+  </body>
+</html>

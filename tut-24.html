@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+
+<body ng-app="myApp">
+
+<p><a href="#/">Main</a></p>
+
+<a href="#tut1">Tut-1</a>
+<a href="#tut2">Tut-2</a>
+<a href="#tut3">Tut-3</a>
+
+<div ng-view></div>
+
+<script>
+var app = angular.module("myApp", ["ngRoute"]);
+app.config(function($routeProvider) {
+    $routeProvider
+    .when("/", {
+        templateUrl : "main.html"
+    })
+    .when("/tut1", {
+        templateUrl : "tut1.html"
+    })
+    .when("/tut2", {
+        templateUrl : "tut2.html"
+    })
+    .otherwise({
+        template : "<h1>Tutorial 3</h1>"
+    });
+});
+</script>
+</body>
+</html>
