@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+  <html lang="en-US">
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
+  </script>
+
+  <body>
+    <!-- <div ng-app="" ng-init="name='Max'">
+      <p>Name: <input type="text" ng-model="name"></p>
+      <h1>Hello <span ng-bind="name"></span></h1>
+      <h4>A calculation: 4*5+1 = {{4*5+1}}</h4>
+    </div> -->
+
+    <div ng-app="myApp" ng-controller="myCtrl">
+      First Name: <input type="text" ng-model="fName"><br>
+      Last Name: <input type="text" ng-model="lName"><br>
+      <br>
+      Full Name: {{fName + " " + lName}}
+
+    </div>
+
+    <script>
+      var app = angular.module('myApp',[]);
+      app.controller('myCtrl', function($scope) {
+        $scope.fName = "Max";
+        $scope.lName = "Meow";
+      });
+    </script>
+  </body>
+</html>
